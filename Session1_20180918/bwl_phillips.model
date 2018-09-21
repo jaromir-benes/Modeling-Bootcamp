@@ -1,0 +1,18 @@
+%% Backward-Looking Phillips Curve
+
+!transition_variables
+    pi, y
+
+!transition_shocks
+    eps_pi
+
+!parameters
+    beta1, beta3
+
+!transition_equations
+
+    pi = beta1*pi{-1} + 0*pi{+1} + beta3*y + eps_pi;
+
+    y = 0;
+
+
