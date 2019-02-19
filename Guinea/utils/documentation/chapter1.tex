@@ -1,0 +1,29 @@
+\section{Infrastructure des modèles}
+ \justifying \large Le modèle de projection trimestriel (MPT) et des modèles auxiliaires utilise Matlab et IRIS Toolbox. Assurez-vous d'avoir d\'{e}marr\'{e} IRIS avant d'ex\'{e}cuter des scripts dans ce dossier et sous-dossiers. L’infrastructure du modèle suit (les noms de dossiers sont marqu\'{e}s par {\color{blue}blue} et celui des fichiers sont marqu\'{e} par {\color{magenta}magenta color}):
+    \renewcommand{\labelitemi}{$\circ$}
+    \begin{itemize}
+        \item {\color{blue}donn\'{e} es} contient des fichiers (.csv) avec des données historiques ainsi que des hypothèses sur l'avenir en fr\'{e}quence mensuelle, trimestrielle et annuelle 
+%        \item {\color{blue}model} contains model text ({\color{blue}external.model}, {\color{blue}mw\_model.model}, {\color{blue}tobacco.model}) 
+%                and parameters settings ({\color{blue}mw\_model\_parameters.m})
+        \item {\color{blue}results} dispose de quatre sous-dossiers (initialement, ce dossier n’existe peut-être pas, et ses sous-dossiers sont créés en exécutant les scripts:
+        \begin{itemize}
+			\item {\color{blue}a0\_screening\_report} contient le rapport des faits stylisé            
+            \item {\color{blue}a1\_model\_data} continent la base de données transforme
+            \item {\color{blue}a2\_read\_model} continent le fichier modèle résolu
+            \item {\color{blue}a3\_run\_filter} contient la base de données filtré (.csv, .mat)
+            \item {\color{blue}a4\_report\_filter} contient le rapport de filtration
+        \end{itemize}
+        \item {\color{blue}utils}:contient des fonctions auxiliaires pour la décomposition des variables (vardecomp\_process\_one\_variable) et la calculation du vraisemblance log (report\_likelihood\_contrib) pour le filtre Kalman. \\\\
+            {\bf Fichiers d'infrastructure  du MPT} (liste reflete la séquence logique lors de la prévision):
+        \item {\color{magenta}gn\_driver.m} execute tous les fichiers a la fois
+        \item {\color{magenta}a0\_screening\_report.m} - prépare un rapport PDF sur les données (rapport de faits stylisé)
+        \item {\color{magenta}a1\_model\_data.m} - lit, traite les données brutes (logs, diffs etc.) et prépare les bases de données utilisées ultérieurement pour la prévision
+        \item {\color{magenta}a2\_read\_model.m} - transforme le fichier gn.mod en format matricielle et résout le modèle, se prépare pour la filtration
+        \item {\color{magenta}a3\_run\_filter.m} - évalue les conditions économiques actuelles via filtre de Kalman (par exemple, définit des variables non-observables tels que les écarts et les tendances)
+        \item {\color{magenta}a4\_report\_filter\_scenario.m} - prépare un rapport PDF sur les résultats du filtre Kalman (rapport de filtration)
+%        \item {\color{magenta}mw5\_run\_forecast.m} - runs forecast
+%        \item {\color{magenta}mw6\_run\_scenario.m} - runs scenario
+%        \item {\color{magenta}mw7\_compare\_forecasts.m} - compares forecast and scenario
+%        \item {\color{magenta}mw8\_analyze\_model.m} - prepares report on model properties: impulse responses, variance decomposition, historical simulations of forecasts
+%        \item {\color{magenta}mw9\_present\_charts.m} - prepares charts for Power Point presentations.
+    \end{itemize}

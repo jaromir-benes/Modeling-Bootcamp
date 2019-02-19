@@ -1,0 +1,37 @@
+\section{Préparation des données}
+\begin{enumerate}
+    {\bf \item  Mise à jour et amélioration des bases de données brutes}. 
+    \onehalfspacing Au stade actuel, nos bases de données se composent de séries chronologiques mensuelles, trimestrielles et annuelles conservées au format * .csv.
+     Les noms de fichiers suivent: {\color{magenta}db\_monthly.csv}, {\color{magenta}db\_quarterly.csv}, {\color{magenta}db\_yearly.csv}. Les fichiers doivent être mis à jour à chaque tour de prévision. 
+%    There is one important thing about series: all seasonally unadjusted series must have '\_su' suffix in the end, if you want them to be adjusted automatically. 
+Assurez-vous d'utiliser des points comme des décimales (par exemple, 9.5 au lieu de 9,5).
+    {\bf \item Lecture et traitement des données}. 
+    Le traitement des données est effectué dans le fichier {\color{magenta} a1\_model\_data.m}. Les actions clés du fichier suivent:
+    \begin{itemize}
+        \item lire les fichiers de bases de données brutes ({\color{magenta}db\_monthly.csv} etc.) du dossier {\color{blue} donnes}
+        \item ajustement saisonnier des données mensuelles et trimestrielles
+        \item convertir les données de la base de données mensuelle et annuel en données trimestrielles
+        \item transformer les données en logs (multipliés par 100), en croissance annuelle si néccessaire
+%        \item providing special adjustment of indicators (e.g. for tobacco prices using the ad-hoc model)
+        \item préparer des indicateurs spéciaux qui seront utilisés dans le MPT en tant qu'observables (termes de l'échange, PIB étranger effectif, IPC étranger effectif, etc.) 
+%        \item creating dictionaries for name of the variable and its description
+        \item enregistrer la base de données des variables observées pour le modèle
+    \end{itemize}
+%    Most of seasonal adjusment, conversion to logs and taking differences are executed automatically (in loops). 
+%    For instance, seasonal adjustment are done in a loop for indicators that have '\_su'
+%    in the end of their name (the loop starts from checking if variable has this feature).\\
+    {\bf Entrées et sorties.}
+    \begin{itemize}
+    \item[\textrightarrow] {\color{magenta}donnees\textbackslash db\_monthly.csv},
+    {\color{magenta}donnees\textbackslash db\_quarterly.csv},
+    {\color{magenta}donnees\textbackslash db\_yearly.csv},
+    {\color{magenta}donnees\textbackslash db\_external.csv}
+    \item[\textleftarrow] {\color{magenta}results\textbackslash a1\_model\_data \textbackslash observed\_db.mat}
+    \end{itemize}
+    %{\bf Auxiliary files}
+%    \begin{itemize}
+%        \item[\textrightarrow] {\color{magenta}utils\textbackslash read\_tobacco.m}
+%        \item[\textrightarrow] {\color{magenta}models\textbackslash read\_tobacco.model}
+%        \item[\textrightarrow] {\color{magenta}utils\textbackslash barstacked.m}
+%    \end{itemize}
+\end{enumerate}

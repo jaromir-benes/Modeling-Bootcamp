@@ -1,0 +1,34 @@
+%% Phillips Curve and Output Gap
+
+%{
+
+Notational Convetions
+---------------------
+l_?       100*log(?)
+dl_?      4*(l_? - l_?{-1})
+d4l_?     l_? - l_?{-4}
+l_?_tnd   Trend in l_?
+l_?_gap   Gap in l_?, l_? - l_?_tnd
+
+%}
+
+
+!transition_variables
+    dl_cpi, l_gdp_gap
+
+!transition_shocks
+    eps_dl_cpi
+    eps_l_gdp_gap
+
+!parameters
+    beta1, beta2, beta3
+    alpha1
+    tar
+
+!transition_equations
+
+    dl_cpi = beta1*dl_cpi{-1} + beta2*dl_cpi{+1} + beta3*y + eps_dl_cpi;
+
+    y = -alpha1*(dl_cpi - tar);
+
+

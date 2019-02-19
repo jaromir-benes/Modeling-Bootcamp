@@ -1,0 +1,27 @@
+    \section{Filtre de Kalman}
+    Le script {\color{magenta} a3\_run\_filter.m} fournit une interprétation historique (nous pouvons également dire qu'il prépare les conditions initiales pour une prévision) du développement de l'économie guinéenne, en décomposant spécifiquement les indicateurs sur les tendances et les écarts étant donnée le modele {\color{magenta} gn.mod}.
+    Les étapes du fichier pour obtenir les résultats du filtre sont les suivantes:
+    \begin{itemize}
+        \item charger la base de données trimestrielle des variables observées et la plage pour filtrage à partir de {\color{magenta} results \textbackslash a1\_read\_data \textbackslash observed\_db.mat}    
+        \item charger l'objet du modèle traité à partir de {\color{magenta} results \textbackslash a2\_read\_model.m \textbackslash model.mat}
+		\item mettre les paramètres du filtre: observables, plages, multiplicateurs, 'tunes' etc.
+        \item exécuter le filtre
+        \item faire des calculs et affiche des variances de chocs (contributions à la vraisemblance de log)
+        \item enregistrer les résultats dans un base de données (.mat et .csv)
+%        \item produire un rapport de filtrage (rapport d'interprétation historique)
+    \end{itemize}
+    
+    {\bf Entreés et sorties}
+    \begin{itemize}
+        \item[\textrightarrow] {\color{magenta} results \textbackslash a1\_read\_data \textbackslash observed\_db.mat},
+        \item[\textrightarrow] {\color{magenta} results \textbackslash a2\_read\_model.m \textbackslash model.mat},
+        \item[\textleftarrow] {\color{magenta}results\textbackslash a3\_run\_filter \textbackslash filter\_data.mat},
+        \item[\textleftarrow] {\color{magenta}results\textbackslash a3\_run\_filter \textbackslash filter\_data.csv},
+        \item[\textleftarrow] {\color{magenta}results\textbackslash a3\_run\_filter \textbackslash filter\_model.mat},
+        \item[\textleftarrow] {\color{magenta}results\textbackslash a3\_run\_filter \textbackslash shock\_decomp.mat},
+    \end{itemize}
+    {\bf Fichiers auxilliares}
+    \begin{itemize}
+        \item[\textrightarrow] {\color{magenta}utils\textbackslash report\_likelihood\_contrib.m},
+    \end{itemize}
+    

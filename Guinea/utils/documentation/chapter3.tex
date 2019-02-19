@@ -1,0 +1,30 @@
+\section{Rapport des faits stylisé}
+	Le code du rapport des faits stylisé est {\color{magenta}a0\_screening\_report.m}. Le rapport est essentiellement une collection de graphiques (voir {\color{magenta}gn\_screening\_report.pdf}, 
+	   
+    Data overview report code is contained in {\color{magenta}mw2\_report\_data.m} file. The report is a basically collection of charts (see {\color{magenta}report\_data\_overview.pdf})
+     et est censé être utilisé pour:
+    \begin{itemize}
+        \item fournir une inspection visuelle {\bf des données mises à jour/nouvelles}
+        \item aider à commencer par {\bf analyse de la position de l'économie}. Il contient beaucoup d'indicateurs qui ne sont pas utilisés dans le modèle ainsi que certaines relations analytiques qui peuvent être utiles, en particulier pour l'analyse des changements structurels, si cela se produit.            
+%        \item fournir {\ bf l'analyse des propriétés statistiques des données} (les résultats sont sous forme de bases de données et de rapport PDF)
+%            \item calculates mean and std of each indicator
+%            \item calculates std of residuals of AR(1) processes for inflation and GDP
+%            \item does bootstrapping for AR(1) of inflation and GDP and shows AR(1) coefficients distributions
+%            \item produces database {\color{magenta}mwdataprop.mat} and report on data statistical properties {\color{magenta}report\_data\_stat\_prop.pdf}
+        \end{itemize}
+
+    {\bf Entrées et sorties}
+    \begin{itemize}
+        \item[\textrightarrow] {\color{magenta}donnees\textbackslash db\_monthly.csv},
+        \item[\textrightarrow] {\color{magenta}donnees\textbackslash db\_quarterly.csv},
+        \item[\textrightarrow] {\color{magenta}donnees\textbackslash db\_yearly.csv},
+        \item[\textrightarrow] {\color{magenta}donnees\textbackslash db\_external.csv},
+        \item[\textleftarrow] {\color{magenta}results\textbackslash a0\_screening\_report \textbackslash gn\_screening\_report.pdf}
+    \end{itemize}
+%        \item[\textleftarrow] {\color{magenta}results\textbackslash reports\textbackslash report\_data\_stat\_prop.pdf}
+%        \item[\textleftarrow] {\color{magenta}results\textbackslash data\textbackslash mwdataprop.mat}.
+%    \end{itemize}
+%    {\bf Auxiliary files}
+%    \begin{itemize}
+%        \item[\textrightarrow] {\color{magenta}utils\textbackslash barstacked.m}
+    
