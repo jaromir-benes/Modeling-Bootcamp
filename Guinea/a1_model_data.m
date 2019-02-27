@@ -7,8 +7,8 @@ close all
 clc
 
 % Créer une dossier pour les résultats
-resDir  = 'results\a1_model_data';
-[~,~,~] = mkdir(resDir);
+resDir = fullfile('results', 'a2_read_model');
+mkdir(resDir);
 
 % Ajouter la dossier des données au Search PAth
 addpath('donnees');
@@ -18,6 +18,8 @@ disp('*** Chargez les données...')
 dm = dbload('db_monthly.csv','delimiter',';');
 dy = dbload('db_yearly.csv','delimiter',';');
 dx = dbload('db_external.csv','delimiter',';');
+
+return
 
 % Base de données pour le modele
 dobs.obs_l_y        = 100*log(convert(dy.pib_reel,'q'));
