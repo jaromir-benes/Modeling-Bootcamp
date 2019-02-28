@@ -1,4 +1,4 @@
-%% Phillips Curve and Output Gap
+% Gap Model for Closed Economy
 
 %{
 
@@ -9,26 +9,50 @@ dl_?      4*(l_? - l_?{-1})
 d4l_?     l_? - l_?{-4}
 l_?_tnd   Trend in l_?
 l_?_gap   Gap in l_?, l_? - l_?_tnd
+r?        Real counterpart to a nominal variable
 
 %}
 
 
 !transition_variables
-    dl_cpi, l_gdp_gap
+    "Output Gap" l_gdp_gap
+    "CPI, Q/Q" dl_cpi
+    "CPI, Y/Y" d4l_cpi
+    "Short-Term Rate" i
+    "Real Short-Term Rate" ri
+    "Real Short-Term Rate Gap" ri_gap
 
 !transition_shocks
-    eps_dl_cpi
-    eps_l_gdp_gap
+    "Shock to Output Gap" shock_l_gdp_gap
+    "Shock to CPI Inflation" shock_dl_cpi
+    "Shock to Short-Term Rate" shock_i
 
 !parameters
-    beta1, beta2, beta3
-    alpha1
-    tar
+    % Structural Parameters
+    alpha1, alpha2
+    beta1, beta2
+    gamma1, gamma2
+
+    % Steady-State Parameters
+    ss_dl_cpi, ss_ri
 
 !transition_equations
 
-    dl_cpi = beta1*dl_cpi{-1} + beta2*dl_cpi{+1} + beta3*y + eps_dl_cpi;
+    % Output Gap Equation (Aggregate Demand)
+    l_gdp_gap = alpha1*l_gdp_gap{-1} - alpha2*ri_gap + shock_l_gdp_gap;
 
-    y = -alpha1*(dl_cpi - tar);
+    % CPI Inflation Equation (Phillips Curve)
+    dl_cpi = beta1*dl_cpi{-1} + (1-beta1)*dl_cpi{+1} + beta2*l_gdp_gap + shock_dl_cpi;
 
+    % Short-Term Rate Equation (Monetary Policy Reaction Function)
+    i = gamma1*i{-1} + (1-gamma1)*[ ss_ri + ss_dl_cpi + gamma2*(d4l_cpi{+3} - ss_dl_cpi) ] + shock_i;
+
+    % Definition of Real Rate
+    ri = i - dl_cpi{+1};
+
+    % Real Rate Gap
+    ri_gap = ri - ss_ri;
+
+    % Identity for Y/Y Inflation
+    d4l_cpi = movavg(dl_cpi, -4);
 
